@@ -2,6 +2,7 @@ package pt.gongas.economy;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pt.gongas.economy.command.CashCommand;
 import pt.gongas.economy.command.MoneyCommand;
@@ -12,6 +13,8 @@ import pt.gongas.economy.listener.PlayerListener;
 import pt.gongas.economy.user.manager.UserManager;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public final class EconomyPlugin extends JavaPlugin {
@@ -22,6 +25,8 @@ public final class EconomyPlugin extends JavaPlugin {
     private DatabaseConnector dataBase;
     @Getter
     public static EconomyPlugin instance;
+    @Getter
+    private final Map<Player, Long> earnCooldown = new HashMap<>();
 
     @Override
     public void onEnable() {
