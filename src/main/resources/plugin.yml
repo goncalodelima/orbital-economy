@@ -1,0 +1,7 @@
+name: orbital-economy
+authors: [ ReeachyZ_ ]
+main: pt.gongas.economy.EconomyPlugin
+description: https://minecraft-solutions.com
+commands:
+  money:
+  cash:

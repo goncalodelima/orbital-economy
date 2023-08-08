@@ -1,0 +1,6 @@
+MariaDB:
+  enable: false #if false, will use SQLite
+  hostname: "host"
+  database: "db"
+  password: "password"
+  port: 3306
