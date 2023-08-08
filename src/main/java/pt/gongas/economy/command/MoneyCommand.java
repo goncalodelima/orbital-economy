@@ -97,6 +97,35 @@ public class MoneyCommand implements CommandExecutor {
             return true;
         }
 
+        if (args[0].equalsIgnoreCase("earn")){
+
+            if (!(sender instanceof Player player))
+                return true;
+
+            if (args.length != 1){
+                player.sendMessage("§cType '/money earn'");
+                return true;
+            }
+
+            if (EconomyPlugin.getInstance().getEarnCooldown().containsKey(player)) {
+                long cooldownEnd = EconomyPlugin.getInstance().getEarnCooldown().get(player) + 60 * 1000;
+                long currentTime = System.currentTimeMillis();
+                if (currentTime < cooldownEnd) {
+                    long remainingTime = (cooldownEnd - currentTime) / 1000;
+                    player.sendMessage("§cYou must wait another §f" + remainingTime + " §cseconds before doing this again.");
+                    return true;
+                }
+            }
+
+            double amount = 1 + Math.random() * 4;
+            User user = EconomyPlugin.getInstance().getUserManager().loadUser(player.getName());
+
+            user.getCurrency(CurrencyType.MONEY).addAmount(amount);
+            EconomyPlugin.getInstance().getEarnCooldown().put(player, System.currentTimeMillis());
+            sender.sendMessage("§aAmount added successfully!");
+            return true;
+        }
+
         if (args.length == 1){
 
             if (!(sender instanceof Player player))
