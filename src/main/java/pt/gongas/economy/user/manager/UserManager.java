@@ -81,6 +81,7 @@ public class UserManager {
         }
 
         statement.execute();
+        statement.close();
 
         if (debug)
             Bukkit.getConsoleSender().sendMessage("§a[orbital-economy] User §f" + user.getName() + " §ahas been successfully saved.");
