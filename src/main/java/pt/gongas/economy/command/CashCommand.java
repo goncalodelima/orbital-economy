@@ -33,11 +33,6 @@ public class CashCommand implements CommandExecutor {
                     return true;
                 }
 
-                if (args[2].equalsIgnoreCase("nan")){
-                    sender.sendMessage("§cInvalid amount!");
-                    return true;
-                }
-
                 double amount;
                 String targetName = args[1];
                 User userTarget = EconomyPlugin.getInstance().getUserManager().getUser(targetName);
@@ -50,6 +45,11 @@ public class CashCommand implements CommandExecutor {
                 try {
                     amount = Double.parseDouble(args[2]);
                 }catch (Exception e){
+                    sender.sendMessage("§cInvalid amount!");
+                    return true;
+                }
+
+                if (amount < 0 || Double.isNaN(amount) || Double.isInfinite(amount)) {
                     sender.sendMessage("§cInvalid amount!");
                     return true;
                 }
@@ -71,11 +71,6 @@ public class CashCommand implements CommandExecutor {
                 return true;
             }
 
-            if (args[2].equalsIgnoreCase("nan")){
-                sender.sendMessage("§cInvalid amount!");
-                return true;
-            }
-
             double amount;
             String targetName = args[1];
             User user = EconomyPlugin.getInstance().getUserManager().loadUser(player.getName());
@@ -92,6 +87,11 @@ public class CashCommand implements CommandExecutor {
                 player.sendMessage("§cInvalid amount!");
                 return true;
             }
+
+            if (amount < 0 || Double.isNaN(amount) || Double.isInfinite(amount)) {
+                    sender.sendMessage("§cInvalid amount!");
+                    return true;
+                }
 
             EconomyPlugin.getInstance().getUserManager().pay(user, userTarget, CurrencyType.CASH, amount);
             return true;
