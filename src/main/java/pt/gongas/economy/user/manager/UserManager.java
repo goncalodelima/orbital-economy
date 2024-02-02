@@ -40,6 +40,8 @@ public class UserManager {
         }
 
         statement.close();
+        result.close();
+        
         Bukkit.getConsoleSender().sendMessage("§a[orbital-economy] §f" + this.users.size() + " §aloaded successfully!");
     }
 
@@ -82,6 +84,7 @@ public class UserManager {
 
         statement.execute();
         statement.close();
+        result.close();
 
         if (debug)
             Bukkit.getConsoleSender().sendMessage("§a[orbital-economy] User §f" + user.getName() + " §ahas been successfully saved.");
