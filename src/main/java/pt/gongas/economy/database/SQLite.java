@@ -26,7 +26,6 @@ public class SQLite extends DatabaseConnector {
         if (connection != null) {
             try {
                 connection.close();
-                connection = null;
                 System.out.println("§a[orbital-economy] Connection closed successfully");
             } catch (SQLException e) {
                 System.out.println("§c[orbital-economy] Error while closing connection");
